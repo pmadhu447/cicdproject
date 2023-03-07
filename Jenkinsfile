@@ -23,13 +23,13 @@ pipeline {
           openshift.withCluster() { 
   openshift.withProject("jenkins-cicd") {
   
-    def buildConfigExists = openshift.selector("bc", "newbuild").exists() 
+    def buildConfigExists = openshift.selector("bc", "nbuild").exists() 
     
     if(!buildConfigExists){ 
-      openshift.newBuild("--name=newbuild", "--docker-image=registry.redhat.io/jboss-eap-7/eap74-openjdk8-openshift-rhel7", "--binary") 
+      openshift.newBuild("--name=nbuild", "--docker-image=registry.redhat.io/jboss-eap-7/eap74-openjdk8-openshift-rhel7", "--binary") 
     } 
     
-    openshift.selector("bc", "newbuild").startBuild("--from-file=target/sample.war", "--follow") } }
+    openshift.selector("bc", "nbuild").startBuild("--from-file=target/jboss.war", "--follow") } }
 
         }
       }
@@ -41,14 +41,14 @@ pipeline {
 
           openshift.withCluster() { 
   openshift.withProject("jenkins-cicd") { 
-    def deployment = openshift.selector("dc", "newbuild") 
+    def deployment = openshift.selector("dc", "nbuild") 
     
     if(!deployment.exists()){ 
-      openshift.newApp('newbuild', "--as-deployment-config").narrow('svc').expose() 
+      openshift.newApp('nbuild', "--as-deployment-config").narrow('svc').expose() 
     } 
     
     timeout(5) { 
-      openshift.selector("dc", "newbuild").related('pods').untilEach(1) { 
+      openshift.selector("dc", "nbuild").related('pods').untilEach(1) { 
         return (it.object().status.phase == "Running") 
       } 
     } 
