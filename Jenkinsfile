@@ -29,7 +29,7 @@ pipeline {
       openshift.newBuild("--name=jenkins", "--docker-image=registry.redhat.io/jboss-eap-7/eap74-openjdk11-openshift-rhel7", "--binary") 
     } 
     
-    openshift.selector("bc", "jenkins").startBuild("--from-file=target/sample.war", "--follow") } }
+    openshift.selector("bc", "jenkins").startBuild("--from-file=target/sample-1.0-SNAPSHOT.war", "--follow") } }
 
         }
       }
