@@ -26,7 +26,7 @@ pipeline {
     def buildConfigExists = openshift.selector("bc", "nbuild").exists() 
     
     if(!buildConfigExists){ 
-      openshift.newBuild("--name=nbuild", "--docker-image=registry.redhat.io/jboss-eap-7/eap74-openjdk8-openshift-rhel7", "--binary") 
+      openshift.nBuild("--name=nbuild", "--docker-image=registry.redhat.io/jboss-eap-7/eap74-openjdk8-openshift-rhel7", "--binary") 
     } 
     
     openshift.selector("bc", "nbuild").startBuild("--from-file=target/jboss.war", "--follow") } }
