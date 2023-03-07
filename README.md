@@ -11,7 +11,7 @@ Create a namespace and add jenkins and login using same cluster credentials
 in CLI create a yaml file inside that file write script BuildConfig and Jenkinsfile Pipeline CI CD
 -- (oc create -f yaml file)  using this create a BuildConfig
 -- (oc start-build BuildConfig name)  start the build
--- (oc get builds -w)  see the updates of builds.
+-- (oc get builds -w)  see the updates of builds
 
 
 
