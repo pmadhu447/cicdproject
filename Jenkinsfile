@@ -23,13 +23,13 @@ pipeline {
           openshift.withCluster() { 
   openshift.withProject("jenkins-cicd") {
   
-    def buildConfigExists = openshift.selector("bc", "nbuild").exists() 
+    def buildConfigExists = openshift.selector("bc", "newbuild").exists() 
     
     if(!buildConfigExists){ 
-      openshift.nBuild("--name=nbuild", "--docker-image=registry.redhat.io/jboss-eap-7/eap74-openjdk8-openshift-rhel7", "--binary") 
+      openshift.newBuild("--name=newbuild", "--docker-image=registry.redhat.io/jboss-eap-7/eap74-openjdk8-openshift-rhel7", "--binary") 
     } 
     
-    openshift.selector("bc", "nbuild").startBuild("--from-file=target/jboss.war", "--follow") } }
+    openshift.selector("bc", "newbuild").startBuild("--from-file=target/sample.war", "--follow") } }
 
         }
       }
@@ -41,10 +41,10 @@ pipeline {
 
           openshift.withCluster() { 
   openshift.withProject("jenkins-cicd") { 
-    def deployment = openshift.selector("dc", "nbuild") 
+    def deployment = openshift.selector("dc", "newbuild") 
     
     if(!deployment.exists()){ 
-      openshift.newApp('nbuild', "--as-deployment-config").narrow('svc').expose() 
+      openshift.newApp('newbuild', "--as-deployment-config").narrow('svc').expose() 
     } 
     
     timeout(5) { 
