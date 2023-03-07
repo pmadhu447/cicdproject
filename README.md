@@ -12,3 +12,21 @@ in CLI create a yaml file inside that file write script BuildConfig and Jenkinsf
 -- (oc create -f yaml file)  using this create a BuildConfig
 -- (oc start-build BuildConfig name)  start the build
 -- (oc ge builds -w)  see the updates of builds
+
+
+
+buildconfig
+---apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: example
+  namespace: java-project
+spec:
+  source:
+    git:
+      ref: master
+      uri: 'https://github.com/openshift/ruby-ex.git'
+    type: Git
+  strategy:
+    jenkinsPipelineStrategy:
+      jenkinsfilePath: Jenkinsfile 
