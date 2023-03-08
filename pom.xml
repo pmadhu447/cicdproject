@@ -64,4 +64,47 @@
       </plugins>
     </pluginManagement>
   </build>
+  <profiles>
+        <profile>
+            <id>sonar</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+               <sonar.host.url>http://sonarqube-jenkins-cicd.apps.cluster-jtc5j.jtc5j.sandbox2222.opentlc.com/</sonar.host.url>
+	       <sonar.login>sqa_b800de5b48c48eeeb73121eef31822575057eeda</sonar.login>
+               <sonar.projectName>jenkins</sonar.projectName>
+               <sonar.projectVersion>main</sonar.projectVersion>
+               <sonar.test.exclusions>**/test/**/*.*</sonar.test.exclusions>
+               <sonar.exclusions>**/ai/**/*.*,**/jdbc/**/*.*,**/mpt/**/*.*,**/jcr/**/*.*,**/JDBC*</sonar.exclusions>
+            </properties>
+        </profile>
+        <profile>
+            <id>coverage</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.jacoco</groupId>
+                        <artifactId>jacoco-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>prepare-agent</id>
+                                <goals>
+                                    <goal>prepare-agent</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>report</id>
+                                <goals>
+                                    <goal>report</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+  </profile>
 </project>
