@@ -71,9 +71,9 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-               <sonar.host.url>https://sonar-java-cicd.apps.cluster-s7cmb.s7cmb.sandbox2460.opentlc.com</sonar.host.url>
-	       <sonar.login>sqa_8808c343e2ad8f08db0e45b5cb7f178d6f6f740b</sonar.login>
-               <sonar.projectName>nari333</sonar.projectName>
+               <sonar.host.url>http://sonarqube-java-project.apps.cluster-8qk89.8qk89.sandbox735.opentlc.com</sonar.host.url>
+	       <sonar.login>sqa_a7c84734e7ad1aadf59ece93eebfa3c6f415b48a</sonar.login>
+               <sonar.projectName>nari</sonar.projectName>
                <sonar.projectVersion>main</sonar.projectVersion>
                <sonar.test.exclusions>**/test/**/*.*</sonar.test.exclusions>
                <sonar.exclusions>**/ai/**/*.*,**/jdbc/**/*.*,**/mpt/**/*.*,**/jcr/**/*.*,**/JDBC*</sonar.exclusions>
